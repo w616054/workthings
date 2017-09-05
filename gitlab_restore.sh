@@ -14,7 +14,7 @@ TIME_LABEL=`ls *.tar | awk -F '_' '{print $1"_"$2"_"$3"_"$4}'`
 gitlab-ctl stop unicorn
 gitlab-ctl stop sidekiq
 sleep 10
-echo "yes" | gitlab-rake gitlab:backup:restore BACKUP=${TIME_LABEL} -s
+echo -e "yes\nyes" | gitlab-rake gitlab:backup:restore BACKUP=${TIME_LABEL} -s
 gitlab-ctl start
 gitlab-rake gitlab:check SANITIZE=true
 
